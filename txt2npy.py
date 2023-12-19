@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # this script is just for converting the .txt quotebank into a .npy
 # you don't need to run it unless you want to change the quotes or add to the quotes
 

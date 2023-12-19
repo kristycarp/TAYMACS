@@ -5,7 +5,6 @@ import sys
 import os
 import random
 import numpy as np
-from dotenv import dotenv_values
 
 
 args = sys.argv
@@ -15,7 +14,11 @@ if len(command) == 0 or not "gmx" in command:
     print("ERROR: taymacs can only be used for gromacs commands")
     sys.exit(1)
 
-TAYMACS_PATH = dotenv_values(".env").get("TAYMACS_PATH")
+TAYMACS_PATH = os.environ.get("TAYMACS_PATH")
+if TAYMACS_PATH == None:
+    print("ERROR: must have TAYMACS path set in .bashrc. See setup instructions in README.")
+    sys.exit(1)
+
 quotes = np.load(os.path.join(TAYMACS_PATH, "tsq.npy"))
 
 process = subprocess.Popen(command, stderr=subprocess.PIPE, shell=True)
